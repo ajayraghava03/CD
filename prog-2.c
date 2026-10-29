@@ -91,3 +91,12 @@ int main()
 
     return 0;
 }
+
+output:
+Enter a line of code:
+int a=10;
+Keyword: int
+Identifier: a
+Operator: =
+Constant: 10
+Special symbol: ;
