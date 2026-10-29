@@ -63,3 +63,11 @@ int main()
 
     return 0;
 }
+
+output :
+Allocated: 10
+Allocated: 20
+Allocated: 30
+Allocated memory: 10 20 30 
+Deallocated: 30
+Allocated memory: 10 20 
