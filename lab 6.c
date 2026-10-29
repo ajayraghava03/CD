@@ -53,3 +53,12 @@ int main()
 
     return 0;
 }
+
+output:
+Enter type of first operand: int
+Enter type of second operand: int
+Enter result type: int
+
+--- Type Checking ---
+Operands have compatible types.
+Result type is correct.
