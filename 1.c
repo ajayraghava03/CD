@@ -56,3 +56,15 @@ int main() {
 
     return 0;
 }
+
+output :
+1.Insert  2.Search  3.Display  4.Exit
+Enter choice: 1
+Enter name, type and value: age int 10
+Symbol inserted.
+
+1.Insert  2.Search  3.Display  4.Exit
+Enter choice: 3
+
+Name    Type    Value
+age     int     10
