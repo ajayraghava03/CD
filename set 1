@@ -155,6 +155,8 @@ int main() {
 }
 
 output :
+int a = 10;
+
 int : Keyword
 a : Identifier
 = : Operator
