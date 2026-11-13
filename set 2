@@ -1,5 +1,7 @@
 
-2. 
+2.  lexical analyzer to recognize a few patterns inc
+
+
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -98,7 +100,8 @@ a : Identifier
 
 
 
-10.
+10. write recursive descent parser for the grammar E->E+T E->T T->T*F T->F 
+F->(E)/id. 
 
 
 #include <stdio.h>
