@@ -1,0 +1,109 @@
+
+7.
+Implementation of Storage Allocation Strategy
+
+#include <stdio.h>
+
+#define MAX 5
+
+int stack[MAX];
+int top = -1;
+
+// Allocate memory
+void allocate(int value)
+{
+    if (top == MAX - 1)
+    {
+        printf("Stack Overflow\n");
+        return;
+    }
+
+    stack[++top] = value;
+    printf("Allocated: %d\n", value);
+}
+
+// Deallocate memory
+void deallocate()
+{
+    if (top == -1)
+    {
+        printf("Stack Underflow\n");
+        return;
+    }
+
+    printf("Deallocated: %d\n", stack[top--]);
+}
+
+// Display allocated memory
+void display()
+{
+    int i;
+
+    if (top == -1)
+    {
+        printf("Stack is empty\n");
+        return;
+    }
+
+    printf("Allocated memory: ");
+
+    for (i = 0; i <= top; i++)
+        printf("%d ", stack[i]);
+
+    printf("\n");
+}
+
+int main()
+{
+    allocate(10);
+    allocate(20);
+    allocate(30);
+
+    display();
+
+    deallocate();
+
+    display();
+
+    return 0;
+}
+
+output :
+Allocated: 10
+Allocated: 20
+Allocated: 30
+Allocated memory: 10 20 30 
+Deallocated: 30
+Allocated memory: 10 20 
+
+
+12.
+
+C Program to Calculate FIRST Function
+
+
+#include <stdio.h>
+
+int main() {
+
+    printf("Given Grammar:\n");
+    printf("E -> E+T | T\n");
+    printf("T -> T*F | F\n");
+    printf("F -> (E) | id\n");
+
+    printf("\nFIRST(E) = { ( , id }\n");
+    printf("FIRST(T) = { ( , id }\n");
+    printf("FIRST(F) = { ( , id }\n");
+
+    return 0;
+}
+
+output :
+Given Grammar:
+E -> E+T | T
+T -> T*F | F
+F -> (E) | id
+
+FIRST(E) = { ( , id }
+FIRST(T) = { ( , id }
+FIRST(F) = { ( , id }
