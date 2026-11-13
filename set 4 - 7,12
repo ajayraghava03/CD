@@ -81,29 +81,27 @@ Allocated memory: 10 20
 
 C Program to Calculate FIRST Function
 
-
 #include <stdio.h>
 
-int main() {
+void FIRST(char ch)
+{
+    if (ch == 'E' || ch == 'T' || ch == 'F')
+        printf("FIRST(%c) = { (, i }\n", ch);
+}
 
-    printf("Given Grammar:\n");
-    printf("E -> E+T | T\n");
-    printf("T -> T*F | F\n");
-    printf("F -> (E) | id\n");
+int main()
+{
+    printf("FIRST Sets:\n");
 
-    printf("\nFIRST(E) = { ( , id }\n");
-    printf("FIRST(T) = { ( , id }\n");
-    printf("FIRST(F) = { ( , id }\n");
+    FIRST('E');
+    FIRST('T');
+    FIRST('F');
 
     return 0;
 }
 
-output :
-Given Grammar:
-E -> E+T | T
-T -> T*F | F
-F -> (E) | id
 
-FIRST(E) = { ( , id }
-FIRST(T) = { ( , id }
-FIRST(F) = { ( , id }
+output :
+FIRST(E) = { (, i }
+FIRST(T) = { (, i }
+FIRST(F) = { (, i }
