@@ -1,1 +1,186 @@
 
+2. 
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+    char str[500], token[100];
+    char *keywords[] = {
+        "int", "float", "char", "if",
+        "else", "while", "for", "return"
+    };
+
+    int i = 0, j, k, flag;
+
+    printf("Enter source code:\n");
+    fgets(str, sizeof(str), stdin);
+
+    while (str[i] != '\0') {
+
+        if (isspace((unsigned char)str[i])) {
+            i++;
+            continue;
+        }
+
+        // Single-line comment
+        if (str[i] == '/' && str[i+1] == '/') {
+            printf("Comment: ");
+            while (str[i] != '\0') {
+                putchar(str[i]);
+                i++;
+            }
+            break;
+        }
+
+        // Identifier or keyword
+        if (isalpha((unsigned char)str[i]) || str[i] == '_') {
+            j = 0;
+
+            while (isalnum((unsigned char)str[i]) ||
+                   str[i] == '_') {
+                token[j++] = str[i++];
+            }
+
+            token[j] = '\0';
+            flag = 0;
+
+            for (k = 0; k < 8; k++) {
+                if (strcmp(token, keywords[k]) == 0) {
+                    flag = 1;
+                    break;
+                }
+            }
+
+            if (flag)
+                printf("%s : Keyword\n", token);
+            else
+                printf("%s : Identifier\n", token);
+        }
+
+        // Constants
+        else if (isdigit((unsigned char)str[i])) {
+            j = 0;
+
+            while (isdigit((unsigned char)str[i]) ||
+                   str[i] == '.') {
+                token[j++] = str[i++];
+            }
+
+            token[j] = '\0';
+            printf("%s : Constant\n", token);
+        }
+
+        // Operators
+        else if (strchr("+-*/%=<>!", str[i])) {
+            printf("%c : Operator\n", str[i]);
+            i++;
+        }
+
+        // Special symbols
+        else {
+            printf("%c : Special Symbol\n", str[i]);
+            i++;
+        }
+    }
+
+    return 0;
+}
+
+output :
+int a = 10;
+
+int : Keyword
+a : Identifier
+= : Operator
+10 : Constant
+; : Special Symbol
+
+
+
+10.
+
+
+#include <stdio.h>
+#include <ctype.h>
+
+char input[100];
+int pos = 0;
+
+int E();
+int T();
+int F();
+
+int match(char c) {
+    if (input[pos] == c) {
+        pos++;
+        return 1;
+    }
+    return 0;
+}
+
+// E -> T E'
+int E() {
+    if (!T())
+        return 0;
+
+    while (match('+')) {
+        if (!T())
+            return 0;
+    }
+
+    return 1;
+}
+
+// T -> F T'
+int T() {
+    if (!F())
+        return 0;
+
+    while (match('*')) {
+        if (!F())
+            return 0;
+    }
+
+    return 1;
+}
+
+// F -> (E) | id
+int F() {
+    if (match('(')) {
+        if (!E())
+            return 0;
+
+        if (!match(')'))
+            return 0;
+
+        return 1;
+    }
+
+    // id is represented by a single letter
+    if (isalpha((unsigned char)input[pos])) {
+        pos++;
+        return 1;
+    }
+
+    return 0;
+}
+
+int main() {
+    printf("Enter an expression: ");
+    scanf("%99s", input);
+
+    if (E() && input[pos] == '\0')
+        printf("Valid Expression\n");
+    else
+        printf("Invalid Expression\n");
+
+    return 0;
+}
+
+output :
+a+b*c
+Valid Expression
+
+a+*b
+Invalid Expression
